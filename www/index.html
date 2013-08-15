@@ -29,6 +29,7 @@
         <title>PILLEpalle!</title>
     </head>
     <body>
+
         <div data-role="page">
         
     	    <div data-role="header">
@@ -48,20 +49,38 @@
                     </p>
         	   </div>
 
-                <a href="index.html" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a" onclick="app.createMyUser('55'); return false" rel="external">Create User</a>
-
 	           <div data-demo-html="true">
 		          <form>
 		              <label for="slider-6" data-highlight="true">Slider:</label>
 		              <input type="range" name="slider-6" id="slider-6" min="0" max="100" value="50">
 		          </form>
-    	       </div>    	    
+    	       </div>    
+
+                <a href="index.html" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a" onclick="app.createMyUser('55'); return false" rel="external">Create User</a>
+
             </div>
 
-    	    <div data-role="footer">
-    		<h4>This is a Footer</h4>
-    	    </div><!-- /footer -->
+            <!-- make sure the footer is bound to the bottom, using the fixed argument -->
+    	    <div data-role="footer" data-position="fixed">
+    		  <h4>This is a Footer</h4>
+    	    </div>
         </div>
+
+
+<div id="messagebox" data-role="popup" data-inline="true" data-transition="pop">
+    <div style="padding:10px 20px;">
+        <div data-role="header">
+            <h1>Message</h1>
+        </div><!-- /header -->
+
+        <div data-role="content">
+            <span id="phMessage"></span>
+            <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-rel="back">OK</a>
+        </div>
+    </div>
+</div>
+
+
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
@@ -70,7 +89,8 @@
 
         <script type="text/javascript">
             function showAlertMsg(alertMsg) {
-        	   alert(alertMsg);
+                $("#phMessage").html(alertMsg);
+                $.mobile.changePage('#messagebox', {transition: 'pop', role: 'dialog'}); 
             }
         </script>
 

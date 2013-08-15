@@ -49,7 +49,7 @@ var app = (function(){
 	   showAlertMsg("Save Failed");
     }
 
-
+//declare public functions
 return {
   initialize:initialize,
   createMyUser:createMyUser
