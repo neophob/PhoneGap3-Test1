@@ -34,11 +34,13 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        var myContact = navigator.contacts.create({"displayName": "Test User"});
+    },
+    createMyUser: function(aNumber) {
+        //hint, we're not looking for existing users, but create a new user each time!
+        var myContact = navigator.contacts.create({"displayName": "Test User"+aNumber});
         myContact.note = "This contact has a note.";
         console.log("The contact, " + myContact.displayName + ", note: " + myContact.note);
-        app.receivedEvent('contactcreated');
-	myContact.save(app.onContactSaveSuccess,app.onContactSaveError);
+        myContact.save(app.onContactSaveSuccess,app.onContactSaveError);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -51,10 +53,10 @@ var app = {
         console.log('Received Event: ' + id);
     },
     onContactSaveSuccess: function(contact) {
-        window.alert("Save Success");
+        showAlertMsg("Successfuly saved user "+contact.displayName);
     },
     onContactSaveError: function(contact) {
-	window.alert("Save Failed");
+	   showAlertMsg("Save Failed");
     },
 };
 
